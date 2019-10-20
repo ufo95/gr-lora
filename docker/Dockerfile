@@ -5,8 +5,10 @@ workdir /lib
 # Update to latest arch
 run pacman -Syu --noconfirm
 
-# Install required dependencies
-run pacman -S git python2-scipy swig cppunit fftw boost boost-libs gnuradio gnuradio-osmosdr libvolk log4cpp base-devel cmake wxgtk-common wxgtk2 wxgtk3 wxpython libuhd-firmware gnuradio-companion python2-requests --noconfirm
+# working dependencies installation command
+run pacman -S git python2 python2-pip swig cppunit fftw boost boost-libs gnuradio gnuradio-osmosdr libvolk log4cpp base-devel cmake wxgtk-common wxgtk2 wxgtk3 wxpython libuhd-firmware gnuradio-companion python2-requests python-gobject vim --noconfirm
+
+run python2 -m pip install scipy
 
 workdir /liquid
 

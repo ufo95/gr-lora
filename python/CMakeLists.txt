@@ -32,6 +32,7 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     lora_receiver.py
+    lora_fast_detect.py
     lorasocket.py
     loraconfig.py
     DESTINATION ${GR_PYTHON_DIR}/lora

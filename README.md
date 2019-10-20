@@ -1,3 +1,6 @@
+This is a fork of the gr-lora[https://github.com/rpp0/gr-lora] repository. It was adjusted to allow fast detection of LoRaWAN packets in order to implement some jamming attacks. Define which kind of jamming attack you want in the lib/fast\_decoder\_impl.h file.
+
+
 gr-lora [![Build status](https://api.travis-ci.org/rpp0/gr-lora.svg)](https://travis-ci.org/rpp0/gr-lora) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.853201.svg)](https://doi.org/10.5281/zenodo.853201)
 =======
 

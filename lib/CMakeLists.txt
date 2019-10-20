@@ -24,6 +24,7 @@ include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND lora_sources
     decoder_impl.cc
+    fast_decoder_impl.cc
     message_file_sink_impl.cc
     message_socket_sink_impl.cc
     channelizer_impl.cc

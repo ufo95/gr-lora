@@ -23,6 +23,7 @@
 install(FILES
     api.h
     decoder.h
+    fast_decoder.h
     message_file_sink.h
     message_socket_sink.h
     channelizer.h

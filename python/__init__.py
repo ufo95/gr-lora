@@ -29,6 +29,7 @@ from .lora_swig import *
 
 # import any pure python here
 from .lora_receiver import lora_receiver
+from .lora_fast_detect import lora_fast_detect
 #
 
 # import optional blocks
