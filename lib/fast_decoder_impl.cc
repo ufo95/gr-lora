@@ -737,7 +737,7 @@ namespace gr {
             return mult_ifreq[256] / (2.0 * M_PI) * d_samples_per_second;
         }
 
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 		std::chrono::time_point<std::chrono::_V2::system_clock, std::chrono::duration<double, std::ratio<1, 1000000000> > > begin;
 #endif
 
@@ -767,7 +767,7 @@ namespace gr {
                         decoding_tries = 0;
 
 						// record first time of contact with the packet
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 						begin = std::chrono::system_clock::now();
 #endif
 
@@ -839,13 +839,13 @@ namespace gr {
                     } else {
 #if JAMMING == TRIGGERED_JAMMING
 
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 								auto end_before = std::chrono::system_clock::now();
 #endif
 
 								trigger_jamming();
 
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 								auto end = std::chrono::system_clock::now();
 								std::chrono::duration<double> elapsed_seconds = end_before-begin;
 								std::cout << "\nElapsed before sending jam signal: " << elapsed_seconds.count() << std::endl;
@@ -911,27 +911,27 @@ namespace gr {
                         if (decoding_tries == 1){ //if device address received is too short increase the decoding_tries needed
                             decode(false); //if we decode here we are unable to decode the whole packet later because of global variables
 
-#if JAMMING_DEBUGGING
+#if JAMMING_DEBUG
                             std::cout << "device address received: ";
                             for (uint32_t i = 4u; i > 0 ; i--) {
                                 std::cout << " " << std::hex << std::setw(2) << std::setfill('0') << (int)d_decoded[i];
                             }
                             std::cout << std::endl;
 #endif
-#if JAMMING == REFLEXIVE_TRIGGERED_JAMMING
+#if JAMMING == TRIGGERED_REFLEXIVE_JAMMING
                             bool test = true;
                             for (int i = 0; i < 4; i++){
                                 test &= d_decoded[4-i] == d_dev_addr[i];
                             }
 
                             if (test) {
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 								auto end_before = std::chrono::system_clock::now();
 #endif
 
 								trigger_jamming();
 
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 								auto end = std::chrono::system_clock::now();
 								std::chrono::duration<double> elapsed_seconds = end_before-begin;
 								std::cout << "\nElapsed before sending jam signal: " << elapsed_seconds.count() << std::endl;
@@ -948,7 +948,7 @@ namespace gr {
 
                     if (d_payload_symbols <= 0) {
                         decode(false); //if we tried decoding earlier the result of this operation is wrong, because of global variables
-#ifdef JAMMING_DEBUGGING
+#ifdef JAMMING_DEBUG
 						auto end = std::chrono::system_clock::now();
 						std::chrono::duration<double> elapsed_seconds = end-begin;
 						std::cout << "Elapsed when received the whole packet: " << elapsed_seconds.count() << std::endl;
