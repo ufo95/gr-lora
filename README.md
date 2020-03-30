@@ -1,4 +1,15 @@
-This is a fork of the gr-lora[https://github.com/rpp0/gr-lora] repository. It was adjusted to allow fast detection of LoRaWAN packets in order to implement some jamming attacks. Define which kind of jamming attack you want in the lib/fast\_decoder\_impl.h file.
+This is a fork of the [gr-lora](https://github.com/rpp0/gr-lora) repository. It was adjusted to allow fast detection of LoRaWAN packets in order to implement some jamming attacks. Define which kind of jamming attack you want in the lib/fast\_decoder\_impl.h file.
+
+To start adjust the mount path in docker/docker_run_gr_lora.sh file and then run it.
+
+To install:
+cd persistent
+git clone https://github.com/rpp0/gr-lora.git .
+mkdir build
+cd build
+cmake ../  # Note to Arch Linux users: add "-DCMAKE_INSTALL_PREFIX=/usr"
+make && sudo make install
+
 
 
 gr-lora [![Build status](https://api.travis-ci.org/rpp0/gr-lora.svg)](https://travis-ci.org/rpp0/gr-lora) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.853201.svg)](https://doi.org/10.5281/zenodo.853201)
