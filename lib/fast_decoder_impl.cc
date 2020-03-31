@@ -911,8 +911,7 @@ namespace gr {
                         if (decoding_tries == 1){ //if device address received is too short increase the decoding_tries needed
                             decode(false); //if we decode here we are unable to decode the whole packet later because of global variables
 
-#if JAMMING_DEBUG
-                            std::cout << "device address received: ";
+#ifdef JAMMING_DEBUG
                             for (uint32_t i = 4u; i > 0 ; i--) {
                                 std::cout << " " << std::hex << std::setw(2) << std::setfill('0') << (int)d_decoded[i];
                             }

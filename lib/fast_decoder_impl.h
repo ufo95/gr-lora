@@ -35,13 +35,13 @@
 #define TRIGGERED_REFLEXIVE_JAMMING 1
 
 // default Jamming setting
-#define JAMMING TRIGGERED_REFLEXIVE_JAMMING
+//#define JAMMING TRIGGERED_REFLEXIVE_JAMMING
 
 // uncomment to enable triggered Jamming
-//#define JAMMING TRIGGERED_JAMMING
+#define JAMMING TRIGGERED_JAMMING
 
 // uncomment to enable debugging / time measuring when Jamming
-//#define JAMMING_DEBUG
+#define JAMMING_DEBUG
 
 namespace gr {
     namespace lora {
