@@ -1,14 +1,36 @@
-This is a fork of the [gr-lora](https://github.com/rpp0/gr-lora) repository. It was adjusted to allow fast detection of LoRaWAN packets in order to implement some jamming attacks. Define which kind of jamming attack you want in the lib/fast\_decoder\_impl.h file.
+This is a fork of the [gr-lora](https://github.com/rpp0/gr-lora) repository. It was adjusted to allow fast detection of LoRaWAN packets in order to implement some jamming attacks. Choose the jamming attack setup in the lib/fast\_decoder\_impl.h file.
 
-To start adjust the mount path in docker/docker_run_gr_lora.sh file and then run it.
+To create a Docker container with the LoRa support for GNU Radio framework installed, edit the mount path in the following file and run it:
+```
+docker/docker_run_gr_lora.sh
+```
 
-To install:
+In the created Docekr container, execute the following to install the LoRa Decoder for GNU Radio:
+```
 cd persistent
-git clone https://github.com/rpp0/gr-lora.git .
 mkdir build
 cd build
-cmake ../  # Note to Arch Linux users: add "-DCMAKE_INSTALL_PREFIX=/usr"
-make && sudo make install
+cmake ../ -DCMAKE_INSTALL_PREFIX=/usr
+make && make install && ldconfig
+cd ..
+```
+
+The LoRa Sniffer uses the serial port `/dev/ttyUSB0` to write jam notifications to the Jammer. Therefore, the serial port needs to be configured at 9600 baudrate first.
+To do so, execute the following (when vim is starting, give full sudo permissions to user `test`; read `useradd_test.sh` for more details):
+```
+cd docker
+./useradd_test.sh
+makepkg -si
+exit
+stty -F /dev/ttyUSB0 9600
+cd ..
+```
+
+To start the LoRa Sniffer, connect an SDR dongle via USB and execute the following:
+```
+cd apps
+./lora_jam.py
+```
 
 
 
